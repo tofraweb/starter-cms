@@ -49,7 +49,7 @@ class AdminUsersController extends Controller
 
         User::create($this->dataValidation($request));
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with('status', 'User successfully created!');
     }
 
     /**
@@ -93,7 +93,7 @@ class AdminUsersController extends Controller
 
         $user->update($this->dataValidation($request));
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with('status', 'User successfully updated!');
     }
 
     /**
@@ -104,7 +104,15 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $user = User::findOrFail($id);
+
+        unlink(public_path() . $user->photo->file); //deletes file 
+
+        $user->delete();
+
+        return redirect('admin/users')->with('status', 'User successfully deleted!');
+
     }
 
     private function dataValidation($request)
