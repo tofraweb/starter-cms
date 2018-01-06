@@ -13,7 +13,7 @@
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th scope="col">User Id</th>
+	      <th scope="col">Id</th>
 	      <th scope="col">Username</th>
 	      <th scope="col">Photo</th>
 	      <th scope="col">Email</th>
