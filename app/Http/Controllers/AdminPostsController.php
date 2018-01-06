@@ -8,6 +8,7 @@ use App\Http\Requests\PostCreateRequest;
 use App\Post;
 use App\User;
 use App\Photo;
+use App\Category;
 
 class AdminPostsController extends Controller
 {
@@ -35,7 +36,9 @@ class AdminPostsController extends Controller
 
         $users = User::pluck('name','id')->all(); 
 
-        return view('admin.posts.create', compact('users'));
+        $categories = Category::pluck('name','id')->all(); 
+
+        return view('admin.posts.create', compact('users', 'categories'));
 
     }
 

@@ -30,7 +30,7 @@
 		      <th scope="row"><a href="{{ route('posts.edit', $post->id) }}">{{ $post->title }}</a></td>
 		      <td><img height="50" src="{{ $post->photo ? $post->photo->file : '/images/placeholder.png'}}"></td>
 		      <td>{{ $post->user ? $post->user->name : 'N/A'}}</td>
-		      <td>{{-- {{ $post->category ? $post->category->name : 'N/A'}} --}}</td>
+		      <td>{{ $post->category ? $post->category->name : 'N/A'}}</td>
 		      <td>{{ $post->created_at }}</td>
 		      <td>{{ $post->updated_at->diffForHumans() }}</td>
 		    </tr>
