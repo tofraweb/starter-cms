@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostCreateRequest;
 use App\Post;
@@ -48,9 +48,9 @@ class AdminPostsController extends Controller
     public function store(PostCreateRequest $request)
     {
 
-        // $user = Auth::user();
+        $user = Auth::user();
 
-        $input =  $request->all();
+        // $input =  $request->all();
 
         // if($file = $request->file('photo_id')){
             
@@ -63,13 +63,20 @@ class AdminPostsController extends Controller
         //     $input['photo_id'] = $photo->id;
         // }
 
-        Post::create($input);
 
-        return $input;
+        // $post = new Post();
+        // $post->title = $input['title'];
+        // $post->body = $input['body'];
+        // $post->photo_id = $input['photo_id'];
+        // $post->user_id = $input['user_id'];
 
-         //Post::create($input);
+        // $post->save();
 
-        // return redirect('admin/posts')->with('status', 'Post successfully created!');
+        //return $input;
+
+        $user->posts()->create($this->dataValidation($request));
+
+        return redirect('admin/posts')->with('status', 'Post successfully created!');
     }
 
     /**
@@ -115,6 +122,26 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+        private function dataValidation($request)
+    {
+
+        $input = $request->all();
+
+        if($file = $request->file('photo_id')){
+            
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $photo = Photo::create(['file' => $name]);
+
+            $input['photo_id'] = $photo->id;
+        }
+
+        return $input;
+
     }
 
 

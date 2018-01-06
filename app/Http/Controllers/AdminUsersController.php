@@ -47,9 +47,7 @@ class AdminUsersController extends Controller
     public function store(UserCreateRequest $request)
     {
 
-        $return = $this->dataValidation($request);
-
-        User::create($return);
+        User::create($this->dataValidation($request));
 
         return redirect('admin/users')->with('status', 'User successfully created!');
     }

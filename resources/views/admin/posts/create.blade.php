@@ -16,8 +16,8 @@
 			{!! Form::label('user_id', 'User') !!}
 			{!! Form::select('user_id', [''=> "Posted by"] + $users , null, ['class' => 'form-control']) !!}
 
-{{-- 			{!! Form::label('category_id', 'Category') !!}
-			{!! Form::select('category_id', [''=> "Choose category"] , null, ['class' => 'form-control']) !!} --}}
+			{!! Form::label('category_id', 'Category') !!}
+			{!! Form::select('category_id', [''=> "Choose category", 1 => 'PHP', 2 => 'Java'] , null, ['class' => 'form-control']) !!}
 
 		</div>
 
