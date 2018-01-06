@@ -53,30 +53,6 @@ class AdminPostsController extends Controller
 
         $user = Auth::user();
 
-        // $input =  $request->all();
-
-        // if($file = $request->file('photo_id')){
-            
-        //     $name = time() . $file->getClientOriginalName();
-
-        //     $file->move('images', $name);
-
-        //     $photo = Photo::create(['file' => $name]);
-
-        //     $input['photo_id'] = $photo->id;
-        // }
-
-
-        // $post = new Post();
-        // $post->title = $input['title'];
-        // $post->body = $input['body'];
-        // $post->photo_id = $input['photo_id'];
-        // $post->user_id = $input['user_id'];
-
-        // $post->save();
-
-        //return $input;
-
         $user->posts()->create($this->dataValidation($request));
 
         return redirect('admin/posts')->with('status', 'Post successfully created!');
@@ -90,7 +66,9 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -101,7 +79,14 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+        $users = User::pluck('name','id')->all(); 
+
+        $categories = Category::pluck('name','id')->all(); 
+
+        return view('admin.posts.edit', compact('post', 'users', 'categories'));
     }
 
     /**

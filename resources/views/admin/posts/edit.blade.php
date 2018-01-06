@@ -2,30 +2,30 @@
 
 @section('content')
 
-	<div class="col-sm-1">
+	<div class="col-sm-4">
 
-		{{-- <img src="{{ $user->photo ? $user->photo->file : '/images/placeholder.png' }}" alt="" class="img-responsive img-rounded"> --}}
+		<img src="{{ $post->photo ? $post->photo->file : '/images/placeholder.png' }}" alt="" class="img-responsive img-rounded">
 
 	</div>
 
-	<div class="col-sm-11">
+	<div class="col-sm-8">
 
 		<h1>Edit Post</h1>
 
-{{-- 		{!! Form::model($user, ['method' => 'PATCH', 'action' => ['AdminUsersController@update', $user->id], 'files' => true]) !!}
+		{!! Form::model($post, ['method' => 'PATCH', 'action' => ['AdminPostsController@update', $post->id], 'files' => true]) !!}
 			<div class="form-group">
 
-				{!! Form::label('name', 'Name') !!}
-				{!! Form::text('name', null, ['class' => 'form-control']) !!}
+				{!! Form::label('title', 'Title') !!}
+				{!! Form::text('title', null, ['class' => 'form-control']) !!}
 
-				{!! Form::label('email', 'Email') !!}
-				{!! Form::email('email', null, ['class' => 'form-control']) !!}
+				{!! Form::label('body', 'Content') !!}
+				{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 
-				{!! Form::label('role_id', 'Role') !!}
-				{!! Form::select('role_id', [''=> "Choose role"] + $roles , null, ['class' => 'form-control']) !!}
+				{!! Form::label('user_id', 'User') !!}
+				{!! Form::select('user_id', [''=> "Posted by"] + $users , null, ['class' => 'form-control']) !!}
 
-				{!! Form::label('is_active', 'Status') !!}
-				{!! Form::select('is_active', array('0' => 'Inactive', '1' => 'Active'), null, ['class' => 'form-control']) !!}
+				{!! Form::label('category_id', 'Category') !!}
+				{!! Form::select('category_id', [''=> "Choose category"]  + $categories, null, ['class' => 'form-control']) !!}
 
 			</div>
 
@@ -35,18 +35,18 @@
 			</div>
 
 			<div class="form-group">
-				{!! Form::submit('Update User', ['class' =>'btn btn-primary col-sm-1']) !!}
+				{!! Form::submit('Update Post', ['class' =>'btn btn-primary col-sm-1']) !!}
 			</div>
 		{!! Form::close() !!}
 
 
-		{!! Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id]]) !!}
+		{!! Form::open(['method' => 'DELETE', 'action' => ['AdminPostsController@destroy', $post->id]]) !!}
 
 			<div class="form-group">
-				{!! Form::submit('Delete User', ['class' =>'btn btn-danger col-sm-1', 'style' => 'margin-left:10px']) !!}
+				{!! Form::submit('Delete Post', ['class' =>'btn btn-danger col-sm-1', 'style' => 'margin-left:10px']) !!}
 			</div>
 
-		{!! Form::close() !!} --}}
+		{!! Form::close() !!}
 
 		@include('includes.form_error')
 
