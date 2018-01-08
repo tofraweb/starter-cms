@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostEditRequest;
 use App\Post;
 use App\User;
 use App\Photo;
@@ -48,7 +49,7 @@ class AdminPostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostCreateRequest $request)
+    public function store(PostEditRequest $request)
     {
 
         $user = Auth::user();
@@ -96,9 +97,13 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostEditRequest $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->update($this->dataValidation($request));
+
+        return redirect('admin/posts')->with('status', 'Post successfully updated!');
     }
 
     /**
@@ -109,10 +114,21 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+        if ($post->photo){
+          unlink(public_path() . $post->photo->file); //deletes file 
+        }
+
+        $post->delete();
+
+        return redirect('admin/posts')->with('status', 'Post successfully deleted!');
+        
     }
 
-        private function dataValidation($request)
+
+    private function dataValidation($request)
     {
 
         $input = $request->all();

@@ -48,6 +48,10 @@
 
 		{!! Form::close() !!}
 
+
+	</div>
+	<div class="col-sm-12">
+
 		@include('includes.form_error')
 
 	</div>

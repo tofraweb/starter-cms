@@ -12,9 +12,9 @@
 
 			{!! Form::label('body', 'Content') !!}
 			{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
-
+{{-- 
 			{!! Form::label('user_id', 'User') !!}
-			{!! Form::select('user_id', [''=> "Posted by"] + $users , null, ['class' => 'form-control']) !!}
+			{!! Form::select('user_id', [''=> "Posted by"] + $users , null, ['class' => 'form-control']) !!} --}}
 
 			{!! Form::label('category_id', 'Category') !!}
 			{!! Form::select('category_id', [''=> "Choose category"]  + $categories, null, ['class' => 'form-control']) !!}
