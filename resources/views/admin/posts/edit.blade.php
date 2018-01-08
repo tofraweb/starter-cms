@@ -2,13 +2,13 @@
 
 @section('content')
 
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 
 		<img src="{{ $post->photo ? $post->photo->file : '/images/placeholder.png' }}" alt="" class="img-responsive img-rounded">
 
 	</div>
 
-	<div class="col-sm-8">
+	<div class="col-sm-9">
 
 		<h1>Edit Post</h1>
 

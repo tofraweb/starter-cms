@@ -21,6 +21,10 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->unsigned()->index()->default(0);
             $table->integer('photo_id')->unsigned()->index()->default(0);
             $table->timestamps();
+
+            //recursive delete on older laravel versions or still valid? need to check it!!
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
